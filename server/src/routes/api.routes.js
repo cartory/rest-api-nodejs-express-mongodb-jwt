@@ -3,17 +3,20 @@ const { Router } = require('express');
 const router = Router();
 
 //  COTROLLERS
-const authController = require('../controllers/auth.controller');
+const userController = require('../controllers/user.controller');
 const roleController = require('../controllers/role.controller');
+
 //  MIDDLEWARES
 const auth = require('../middlewares/auth.middleware');
 
 //  ROUTES
 router  
     //  USER ROUTES
-    .post('/signup',    authController.register)
-    .post('/signin',    authController.login)
-    .get('/me',         auth.verifyToken, authController.profile)
+    .get('/users',      userController.all)
+    .get('/users/:id',  userController.find)
+    .post('/signup',    userController.register)
+    .post('/signin',    auth.verifyLogin, userController.login)
+    .get('/me',         auth.verifyToken, userController.profile)
     //  ROLE ROUTES
     .get('/roles',          roleController.all)
     .get('/roles/:id',      roleController.find)
