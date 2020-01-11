@@ -1,12 +1,17 @@
 //  REQUIRE
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
-const secret = 'cari';
+
+//  SETTING JWT_SECRET
+const secret = process.env.JWT_SECRET;
+
+//  TOKEN HEADERS
+const auth_header = 'x-access-token';
 
 //  METHODS
 module.exports = {
     verifyToken: (req, res, next) => {   
-        var token = req.headers['x-access-token'];
+        var token = req.headers[auth_header];
         if (!token)
             return res.status(401).json({auth: false, message: "Not authorized"});
         var decoded = jwt.verify(token, secret);

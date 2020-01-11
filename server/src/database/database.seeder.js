@@ -10,8 +10,8 @@ database.connect();
 
 //  DB SEEDER
 async function seedDatabase(){
-    await roleSeeder.seed();
-    // await roleSeeder.make(3);
+    // await roleSeeder.seed();
+    await roleSeeder.make(5);
     // await userSeeder.seed();
     // userSeeder.make(10);
     process.exit(0);

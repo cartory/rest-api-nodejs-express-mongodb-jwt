@@ -6,7 +6,7 @@ const morgan = require('morgan');
 
 //  INIT
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT;
 
 //  USES AND CONNECTION 
 app.use(express.urlencoded({extended: true}));

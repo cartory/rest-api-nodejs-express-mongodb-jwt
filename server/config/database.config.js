@@ -1,6 +1,18 @@
 //  REQUIRES
 const mongoose = require('mongoose');
-const uri = 'mongodb://localhost/database';
+const dotenv = require('dotenv');
+
+//  INIT
+dotenv.config();
+
+//  SETTING .ENV
+const uri =
+    process.env.MONGO_USERNAME || process.env.MONGO_PASSWORD?
+    // THEN
+    `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_HOSTNAME}:${process.env.MONGO_PORT}/${process.env.MONGO_DATABASE}`:
+    //  ELSE
+    `mongodb://${process.env.MONGO_HOSTNAME}:${process.env.MONGO_PORT}/${process.env.MONGO_DATABASE}`;
+    // console.log(typeof(uri), uri);}
 
 //  DB CONNECCTION
 module.exports = {
